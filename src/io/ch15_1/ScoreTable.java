@@ -25,13 +25,13 @@ public class ScoreTable {
         try (FileInputStream fis = new FileInputStream("scores.txt")) {
 
             // 파일 전체를 문자열로 읽기
-            StringBuffer sb = new StringBuffer();
+            StringBuffer sb = new StringBuffer(); // 기존 문자를 추가하기 위해 선언함
             int data;
             while ((data = fis.read()) != -1) {
-                sb.append((char) data);
+                sb.append((char) data);//자바의 append()는 StringBuilder나 StringBuffer 클래스에서 문자열의 기존 내용을 변경하지 않고 끝에 새로운 데이터를 추가하여 문자열을 효율적으로 결합하는 메서드
             }
             // 공백 기준으로 문자열을 자르는 split.. --> 배열 char 반환
-            String[] parts = sb.toString().trim().split(" ");
+            String[] parts = sb.toString().trim().split(" "); // trim(" "); " " 제거  split 들어간 문자만큼 배열생성 String 메서드이다
 
             int total = 0;
 
@@ -42,7 +42,6 @@ public class ScoreTable {
             }
             System.out.println("총점: " + total);
             System.out.println("평균: " +(double) total / parts.length);
-
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         } catch (IOException e) {
