@@ -12,15 +12,15 @@ import java.util.Scanner;
  *                          총 3개의 기록이 있습니다.
  *                          \n 입력할때마다 기록 생성
  */
-public class TypingRecord {
+public class TypingRecord2 {
 
-   private int count ;
+
 
 
     public static void main(String[] args) throws Exception {
 
-        TypingRecord ty = new TypingRecord();
-       int count = ty.count;
+        TypingRecord2 ty = new TypingRecord2();
+
 
         Scanner sc = new Scanner(System.in);
 
@@ -31,8 +31,8 @@ public class TypingRecord {
         String choice = sc.nextLine();
 
         if (choice.equals("1")) {
-            saveRecord(sc,count);
-                count++;
+            saveRecord(sc);
+
         } else if (choice.equals("2")) {
             printRecord();
         }
@@ -45,21 +45,36 @@ public class TypingRecord {
         System.out.println("\n===저장된 기록 ===");
         try (FileInputStream fin = new FileInputStream("typing_record.txt")) {
             int data;
+            int lineNunmber = 1; // 현재 출력중인 줄번호
+            StringBuilder sb = new StringBuilder();
+            // StringBuilder 는 문자를 하나씩 이어 붙이는 가변 문자열 버퍼
+            // String += "가" 를 반복하면 매번 새로운 객체가 생겨 느리므로 StringBulider를 사용한다.
             // 저장된 기록마다
             while ((data = fin.read()) != -1) {
                 System.out.print((char) data);
-            }
+
+                if((char) data == '\n'){
+                    // 개행문자 (\n) 을 만났다 == 한줄이 끝났다
+
+                    lineNunmber++;
+                }else {
+                    // 개행문자(\n) 아니라면 sb에 계속 이어 붙임
+                    sb.append((char) data);
+                }
+                // 출력할때 만약 \n(개행문자) 이 들어온다면 카운트를 1씩 올리겠다.
+            }// end of while
+            System.out.println(sb.toString());
+            System.out.println("총" + lineNunmber + "개의 기록이 있습니다.");
         }
     }
 
-    private static void saveRecord(Scanner sc ,int count) {
+    private static void saveRecord(Scanner sc ) {
 
         System.out.print("연습한 문장을 입력하세요 : ");
         String input = sc.nextLine();
 
         try (FileOutputStream fos = new FileOutputStream("typing_record.txt", true)) {
 
-            fos.write((count +"번기록: ").getBytes());
             fos.write(input.getBytes());
             // 줄바꿈 추가
             fos.write("\n".getBytes());
