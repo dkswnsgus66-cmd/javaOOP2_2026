@@ -117,18 +117,30 @@ public class MemberRepository {
         return result;
     }
 
-    public List<Member> findByEmail(String email){
+    public Member findByEmail(String email){
 
-        List<Member> result = new ArrayList<>();
+//        List<Member> result = new ArrayList<>();
+//
+//        for (Member member : memberList){ // 모든 리스트 호출
+//
+//            if(member.getEmail().equalsIgnoreCase(email)){ // 이메일 같은것만 걸러내기
+//                result.add(member); // 추가
+//            }
+//
+//        }
+//        return result; //토해냄
+        if(emailSet.contains(email) == false){
+            // 이메일 자체가 중복이 안되기에 특정 이메일만 찾으면 됨
+            // 전체 순회전에 존배 여부확인 --> 빠르게 존재 여부 확인
+            for (Member member : memberList){
+                if(member.getEmail().equalsIgnoreCase(email)){
 
-        for (Member member : memberList){ // 모든 리스트 호출
+                 return member;
 
-            if(member.getEmail().equalsIgnoreCase(email)){ // 이메일 같은것만 걸러내기
-                result.add(member); // 추가
+                }
             }
-
         }
-        return result; //토해냄
+        return null;
     }
 
 
