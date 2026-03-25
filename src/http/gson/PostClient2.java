@@ -38,21 +38,18 @@ public class PostClient2 {
                 }
                 String jsonString = sb.toString(); // String 으로 변환
 
-
                 Gson gson = new Gson();
 
                 List<Post> list;
-                TypeToken<List<Post>> typeToken = new TypeToken<>() {
-                };
+                TypeToken<List<Post>> typeToken = new TypeToken<>() {};
                 List<Post> postList = gson.fromJson(jsonString, typeToken.getType());
                 System.out.println(postList.size());
+
                 for (int i = 0; i < postList.size(); i++) {
                     System.out.println(postList.get(i));
                     System.out.println("---------------");
                 }
-
             }
-
         } catch (Exception e) {
             throw new RuntimeException(e);
         }

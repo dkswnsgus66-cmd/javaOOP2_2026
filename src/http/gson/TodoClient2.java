@@ -56,7 +56,9 @@ public class TodoClient2 {
                 System.out.println("전체 갯수 : " + todoList.size() + "개"); // Todo 객체 200개 가 들어감
                 // 200개 중에 앞에있는 3개만 출력
                 for (int i = 0; i < todoList.size(); i++) {
-                    System.out.println(todoList.get(i));
+
+
+
                 }
 
             }

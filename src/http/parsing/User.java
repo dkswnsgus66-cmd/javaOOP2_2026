@@ -18,31 +18,35 @@ public class User {
     private String phone;
     private String website;
 
+
+
+
+
+
+}
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+ class Address {
+    private Geo geo;
+    private String street;
+    private String suite;
+    private String zipcode;
+
+
     @Data
     @NoArgsConstructor
     @AllArgsConstructor
-    class Address {
-        private Geo geo;
-        private String street;
-        private String suite;
-        private String zipcode;
-
-
-        @Data
-        @NoArgsConstructor
-        @AllArgsConstructor
-        class Geo{
-            private String lat;
-            private String lng;
-        }
+    class Geo{
+        private String lat;
+        private String lng;
     }
-    @Data
-    @NoArgsConstructor
-    @AllArgsConstructor
-    class Company{
-        private String name;
-        private String catchphrase;
-        private String bs;
-    }
-
+}
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+class Company{
+    private String name;
+    private String catchphrase;
+    private String bs;
 }
